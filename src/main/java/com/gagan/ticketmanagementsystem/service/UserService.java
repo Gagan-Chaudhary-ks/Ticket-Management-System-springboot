@@ -13,9 +13,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User createUser(User user) {
-        return userRepository.save(user);
+    public User createUser(User u) {
+        return userRepository.save(u);
     }
+
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
