@@ -34,4 +34,9 @@ public class UserController {
         userService.deleteUser(id);
         return "User with ID " + id + " has been deleted successfully";
     }
+
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable Integer id, @RequestBody User user){
+        return userService.updateUser(id, user);
+    }
 }
