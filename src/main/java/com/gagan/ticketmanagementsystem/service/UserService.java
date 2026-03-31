@@ -4,6 +4,7 @@ import com.gagan.ticketmanagementsystem.entity.User;
 import com.gagan.ticketmanagementsystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,4 +31,22 @@ public class UserService {
     public void deleteUser(Integer id){
         userRepository.deleteById(id);
     }
+
+    @Transactional
+    public User updateUser(Integer id, User updatedUser){
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("User with ID " + id + " not found"));
+
+        if(updatedUser.getName() != null){
+            existingUser.setName(updatedUser.getName());
+        }
+        if(updatedUser.getEmail() != null){
+            existingUser.setEmail(updatedUser.getEmail());
+        }
+        if(updatedUser.getRole() != null) {
+            existingUser.setRole(updatedUser.getRole());
+        }
+        return userRepository.save(existingUser);
+    }
+
 }
