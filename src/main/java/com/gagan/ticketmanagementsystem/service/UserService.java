@@ -27,4 +27,7 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User doesn't exists!"));
     }
 
+    public void deleteUser(Integer id){
+        userRepository.deleteById(id);
+    }
 }
