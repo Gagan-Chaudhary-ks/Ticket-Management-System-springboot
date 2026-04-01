@@ -6,7 +6,9 @@ import com.gagan.ticketmanagementsystem.entity.Ticket;
 import com.gagan.ticketmanagementsystem.repository.TicketRepository;
 import com.gagan.ticketmanagementsystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -26,12 +28,14 @@ public class TicketService {
         ticket.setDescription(ticketDto.getDescription());
 
         User creator = userRepository.findById(ticketDto.getCreatorId())
-                .orElseThrow(() -> new RuntimeException("User with ID "+ ticketDto.getCreatorId() + " not found! "));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,"User with ID "+ ticketDto.getCreatorId() + " not found! "));
         ticket.setCreatedBy(creator);
 
         if(ticketDto.getAssignedToId() != null){
             User assignedTo = userRepository.findById(ticketDto.getAssignedToId())
-                    .orElseThrow(()-> new RuntimeException("User with ID " + ticketDto.getAssignedToId()+ " not found!"));
+                    .orElseThrow(()-> new ResponseStatusException(
+                            HttpStatus.NOT_FOUND,"User with ID " + ticketDto.getAssignedToId()+ " not found!"));
             ticket.setAssignedTo(assignedTo);
         }
         return ticketRepository.save(ticket);
