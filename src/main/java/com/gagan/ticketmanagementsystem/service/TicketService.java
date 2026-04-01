@@ -8,6 +8,8 @@ import com.gagan.ticketmanagementsystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TicketService {
 
@@ -33,5 +35,9 @@ public class TicketService {
             ticket.setAssignedTo(assignedTo);
         }
         return ticketRepository.save(ticket);
+    }
+
+    public List<Ticket> getAllTickets(){
+        return ticketRepository.findAll();
     }
 }
