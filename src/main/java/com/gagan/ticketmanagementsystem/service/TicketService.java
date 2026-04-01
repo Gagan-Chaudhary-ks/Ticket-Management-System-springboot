@@ -1,5 +1,6 @@
 package com.gagan.ticketmanagementsystem.service;
 
+import com.gagan.ticketmanagementsystem.dto.TicketRequestDTO;
 import com.gagan.ticketmanagementsystem.entity.User;
 import com.gagan.ticketmanagementsystem.entity.Ticket;
 import com.gagan.ticketmanagementsystem.repository.TicketRepository;
@@ -16,16 +17,20 @@ public class TicketService {
     @Autowired
     private TicketRepository ticketRepository ;
 
-    public Ticket createTicket(Ticket ticket, Integer creatorId, Integer assignedToId){
+    public Ticket createTicket(TicketRequestDTO ticketDto){
+        Ticket ticket = new Ticket();
 
-        User creator = userRepository.findById(creatorId)
-                .orElseThrow(() -> new RuntimeException("User with ID " + creatorId + " not found"));
+        ticket.setTitle(ticketDto.getTitle());
+        ticket.setDescription(ticketDto.getDescription());
+
+        User creator = userRepository.findById(ticketDto.getCreatorId())
+                .orElseThrow(() -> new RuntimeException("User with ID "+ ticketDto.getCreatorId() + " not found! "));
         ticket.setCreatedBy(creator);
 
-        if(assignedToId != null){
-            User resolver = userRepository.findById(assignedToId)
-                    .orElseThrow(() -> new RuntimeException("User with ID " + assignedToId+ " not found"));
-            ticket.setAssignedTo(resolver);
+        if(ticketDto.getAssignedToId() != null){
+            User assignedTo = userRepository.findById(ticketDto.getAssignedToId())
+                    .orElseThrow(()-> new RuntimeException("User with ID " + ticketDto.getAssignedToId()+ " not found!"));
+            ticket.setAssignedTo(assignedTo);
         }
         return ticketRepository.save(ticket);
     }
