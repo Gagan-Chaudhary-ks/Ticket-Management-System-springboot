@@ -30,4 +30,10 @@ public class TicketController {
         List<Ticket> tickets = ticketService.getAllTickets();
         return new ResponseEntity<>(tickets, HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Ticket> getTicketById(@PathVariable Integer id){
+        Ticket ticket = ticketService.getTicketById(id);
+        return new ResponseEntity<>(ticket ,HttpStatus.OK);
+    }
 }
