@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/tickets")
@@ -21,5 +23,11 @@ public class TicketController {
     public ResponseEntity<Ticket> createTicket(@RequestBody TicketRequestDTO ticketRequestDTO){
         Ticket createdTicket = ticketService.createTicket(ticketRequestDTO);
         return new ResponseEntity<Ticket>(createdTicket, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Ticket>> getAllTickets(){
+        List<Ticket> tickets = ticketService.getAllTickets();
+        return new ResponseEntity<>(tickets, HttpStatus.OK);
     }
 }
