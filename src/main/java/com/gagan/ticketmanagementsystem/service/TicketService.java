@@ -44,4 +44,10 @@ public class TicketService {
     public List<Ticket> getAllTickets(){
         return ticketRepository.findAll();
     }
+
+    public Ticket getTicketById(Integer id){
+        return ticketRepository.findById(id)
+                .orElseThrow(()-> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "User with ID " + id + " not found"));
+    }
 }
