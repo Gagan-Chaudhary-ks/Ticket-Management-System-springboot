@@ -43,4 +43,10 @@ public class TicketController {
         Ticket updatedTicket = ticketService.updateTicket(id, updateDto);
         return new ResponseEntity<>(updatedTicket,HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> softDeleteTicket(@PathVariable Integer id){
+        ticketService.softDeleteTicket(id);
+        return new ResponseEntity<>("Ticket deleted successfully",HttpStatus.OK);
+    }
 }
