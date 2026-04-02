@@ -74,4 +74,10 @@ public class TicketService {
         return ticketRepository.save(existingTicket);
     }
 
+    public void softDeleteTicket(Integer id){
+        Ticket ticket = getTicketById(id);
+        ticket.setDeleted(true);
+        ticket.setStatus("DELETED");
+        ticketRepository.save(ticket);
+    }
 }
