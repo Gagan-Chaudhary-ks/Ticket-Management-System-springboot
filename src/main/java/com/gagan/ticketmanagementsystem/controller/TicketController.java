@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.gagan.ticketmanagementsystem.dto.TicketUpdateDTO;
 
 import java.util.List;
 
@@ -35,5 +36,11 @@ public class TicketController {
     public ResponseEntity<Ticket> getTicketById(@PathVariable Integer id){
         Ticket ticket = ticketService.getTicketById(id);
         return new ResponseEntity<>(ticket ,HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Ticket> updateTicket(@PathVariable Integer id, @RequestBody TicketUpdateDTO updateDto){
+        Ticket updatedTicket = ticketService.updateTicket(id, updateDto);
+        return new ResponseEntity<>(updatedTicket,HttpStatus.OK);
     }
 }
