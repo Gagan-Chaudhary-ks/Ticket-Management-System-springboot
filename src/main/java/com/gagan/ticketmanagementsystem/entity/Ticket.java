@@ -22,6 +22,8 @@ public class Ticket {
     private String status;
     private String priority;
 
+    private boolean isDeleted = false;
+
     @ManyToOne
     @JoinColumn(name = "created_by_id")
     private User createdBy;
