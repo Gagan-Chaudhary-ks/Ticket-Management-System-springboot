@@ -43,7 +43,7 @@ public class TicketService {
     }
 
     public List<Ticket> getAllTickets(){
-        return ticketRepository.findAll();
+        return ticketRepository.findByIsDeletedFalse();
     }
 
     public Ticket getTicketById(Integer id){
