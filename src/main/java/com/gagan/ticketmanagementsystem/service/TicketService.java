@@ -47,9 +47,14 @@ public class TicketService {
     }
 
     public Ticket getTicketById(Integer id){
-        return ticketRepository.findById(id)
+        Ticket ticket = ticketRepository.findById(id)
                 .orElseThrow(()-> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Ticket with ID " + id + " not found"));
+
+        if(ticket.isDeleted()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Ticket has been deleted!");
+        }
+        return ticket;
     }
 
     public Ticket updateTicket(Integer id, TicketUpdateDTO ticketUpdateDTO){
