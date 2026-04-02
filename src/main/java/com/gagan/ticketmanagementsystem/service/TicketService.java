@@ -1,6 +1,7 @@
 package com.gagan.ticketmanagementsystem.service;
 
 import com.gagan.ticketmanagementsystem.dto.TicketRequestDTO;
+import com.gagan.ticketmanagementsystem.dto.TicketUpdateDTO;
 import com.gagan.ticketmanagementsystem.entity.User;
 import com.gagan.ticketmanagementsystem.entity.Ticket;
 import com.gagan.ticketmanagementsystem.repository.TicketRepository;
@@ -50,4 +51,22 @@ public class TicketService {
                 .orElseThrow(()-> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "User with ID " + id + " not found"));
     }
+
+    public Ticket updateTicket(Integer id, TicketUpdateDTO ticketUpdateDTO){
+        Ticket exisitingTicket = getTicketById(id);
+
+        if(ticketUpdateDTO.getTitle() != null) exisitingTicket.setTitle(ticketUpdateDTO.getTitle());
+        if(ticketUpdateDTO.getDescription() != null) exisitingTicket.setDescription(ticketUpdateDTO.getDescription());
+        if(ticketUpdateDTO.getStatus() != null) exisitingTicket.setStatus(ticketUpdateDTO.getStatus());
+        if(ticketUpdateDTO.getPriority() != null) exisitingTicket.setPriority(ticketUpdateDTO.getPriority());
+
+        if(ticketUpdateDTO.getAssignedToId() != null){
+            User user = userRepository.findById(ticketUpdateDTO.getAssignedToId())
+                    .orElseThrow(()-> new ResponseStatusException(
+                            HttpStatus.NOT_FOUND,"user with ID " +ticketUpdateDTO.getAssignedToId() + " not found"));
+            exisitingTicket.setAssignedTo(user);
+        }
+        return ticketRepository.save(exisitingTicket);
+    }
+
 }
