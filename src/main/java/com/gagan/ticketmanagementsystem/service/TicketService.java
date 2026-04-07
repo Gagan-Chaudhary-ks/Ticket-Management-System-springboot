@@ -86,6 +86,11 @@ public class TicketService {
     }
 
     public List<Ticket> getTicketByCreatedUser(Integer id){
+        if(!userRepository.existsById(id)){
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "User with ID " + id + " not found"
+            );
+        }
         return ticketRepository.findByCreatedByIdAndIsDeletedFalse(id);
     }
 
