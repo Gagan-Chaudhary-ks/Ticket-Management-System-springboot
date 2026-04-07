@@ -1,98 +1,102 @@
 # 🎟️ Ticket Management System (Spring Boot)
 
 ## 📌 Overview
-
-A RESTful backend application built using Spring Boot to manage users and support tickets.
-This project demonstrates backend development using modern Java frameworks with proper architecture, validation, and database integration.
+A RESTful backend application built using Spring Boot to manage users and support tickets.  
+Implements layered architecture, DTO pattern, validation, and production-style API design.
 
 ---
 
 ## 🚀 Tech Stack
-
-* Java 17
-* Spring Boot
-* Spring Data JPA (Hibernate)
-* MySQL
-* Maven
-* Postman
+- Java 17
+- Spring Boot
+- Spring Data JPA (Hibernate)
+- MySQL
+- Maven
+- Postman
 
 ---
 
 ## 🏗️ Architecture
-
-The project follows a clean layered architecture:
-
-* **Controller Layer** → Handles HTTP requests & responses
-* **Service Layer** → Contains business logic
-* **Repository Layer** → Database interaction using JPA
-* **Entity Layer** → Maps Java objects to database tables
+Controller → Service → Repository → Database
 
 ---
 
 ## ⚙️ Features
 
 ### 👤 User Management
-
-* Create, Read, Update, Delete users
-* Partial update support (only update required fields)
-* Proper error handling for invalid user IDs
-
----
+- Full CRUD operations
+- Partial updates
+- Proper validation for invalid user IDs
 
 ### 🎫 Ticket Management
-
-* Create ticket with user validation
-* Assign ticket to existing users
-* Fetch all tickets and specific ticket by ID
-* Entity relationships using `@ManyToOne`
-* Automatic timestamps using `@PrePersist`
+- Create and assign tickets to users
+- Fetch, update, and soft delete tickets
+- Filter tickets by:
+    - Status
+    - Priority
+    - Created user
+    - Assigned user
+- Entity relationships using `@ManyToOne`
+- Automatic timestamps using `@PrePersist` & `@PreUpdate`
 
 ---
 
 ## 🔗 API Endpoints
 
 ### User APIs
-
-* `POST /users` → Create user
-* `GET /users` → Get all users
-* `GET /users/{id}` → Get user by ID
-* `PUT /users/{id}` → Update user
-* `DELETE /users/{id}` → Delete user
+- POST `/api/users`
+- GET `/api/users`
+- GET `/api/users/{id}`
+- PUT `/api/users/{id}`
+- DELETE `/api/users/{id}`
 
 ### Ticket APIs
+- POST `/api/tickets`
+- GET `/api/tickets`
+- GET `/api/tickets/{id}`
+- PUT `/api/tickets/{id}`
+- DELETE `/api/tickets/{id}`
 
-* `POST /api/tickets` → Create ticket
-* `GET /api/tickets` → Get all tickets
-* `GET /api/tickets/{id}` → Get ticket by ID
+### Filters
+- GET `/api/tickets/status/{status}`
+- GET `/api/tickets/priority/{priority}`
+- GET `/api/tickets/created-by/{id}`
+- GET `/api/tickets/assigned-to/{id}`
 
 ---
 
 ## 🧠 Key Concepts Implemented
-
-* RESTful API design
-* DTO pattern for request handling
-* Entity relationships (`@ManyToOne`)
-* Exception handling using `ResponseStatusException`
-* Hibernate for ORM (Java → SQL conversion)
-* Automatic auditing with lifecycle hooks
+- RESTful API design
+- DTO pattern
+- Layered architecture
+- JPA entity relationships (`@ManyToOne`)
+- Soft delete implementation
+- Input validation (status & priority)
+- Centralized exception handling (`@ControllerAdvice`)
+- Lifecycle hooks for auditing
 
 ---
 
-## 📈 In Progress / Improvements
+## ⚠️ Valid Values
+- Status: OPEN, IN_PROGRESS, RESOLVED
+- Priority: LOW, MEDIUM, HIGH
 
-* Update & delete ticket with business conditions
-* Fetch tickets by user
-* Use Enums for status & priority
-* Global exception handling
-* DTO responses for better API design
+---
+
+## 🧪 Testing
+Tested using Postman for all endpoints.
+
+---
+
+## 📈 Future Improvements
+- JWT Authentication
+- Pagination & sorting
+- Frontend integration (React)
 
 ---
 
 ## 🎯 Learning Outcome
-
-* Built REST APIs using Spring Boot
-* Implemented layered backend architecture
-* Worked with relational databases using JPA & Hibernate
-* Applied real-world business logic and validation
-
----
+- Built scalable REST APIs using Spring Boot
+- Implemented clean backend architecture
+- Applied validation and exception handling
+- Designed real-world API features and workflows
