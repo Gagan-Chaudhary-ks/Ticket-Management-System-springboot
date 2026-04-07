@@ -122,4 +122,12 @@ public class TicketService {
         }
         return ticketRepository.findByPriorityAndIsDeletedFalse(upperPriority);
     }
+
+    private void validateStatus(String status) {
+        List<String> validStatus = List.of("OPEN", "IN_PROGRESS", "RESOLVED");
+        if (!validStatus.contains(status.toUpperCase())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Status Value");
+        }
+    }
+
 }
