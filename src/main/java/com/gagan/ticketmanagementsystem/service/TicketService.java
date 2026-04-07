@@ -92,4 +92,8 @@ public class TicketService {
     public List<Ticket> getTicketByAssignedUser(Integer id){
         return ticketRepository.findByAssignedToIdAndIsDeletedFalse(id);
     }
+
+    public List<Ticket> getTicketByPriority(String priority){
+        return ticketRepository.findByPriorityAndIsDeletedFalse(priority);
+    }
 }
