@@ -48,4 +48,9 @@ public class TicketController {
         ticketService.softDeleteTicket(id);
         return new ResponseEntity<>("Ticket deleted successfully",HttpStatus.OK);
     }
+
+    @GetMapping("/status/{status}")
+    public List<Ticket> getTicketByStatus(@PathVariable String status){
+        return ticketService.getTicketByStatus(status);
+    }
 }
