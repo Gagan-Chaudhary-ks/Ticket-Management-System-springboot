@@ -3,8 +3,10 @@ package com.gagan.ticketmanagementsystem.service;
 import com.gagan.ticketmanagementsystem.entity.User;
 import com.gagan.ticketmanagementsystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -25,7 +27,8 @@ public class UserService {
 
     public User getUserById(Integer id){
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User doesn't exists!"));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,"User with ID " + id + " not found"));
     }
 
     public void deleteUser(Integer id){
@@ -35,7 +38,8 @@ public class UserService {
     @Transactional
     public User updateUser(Integer id, User updatedUser){
         User existingUser = userRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("User with ID " + id + " not found"));
+                .orElseThrow(()-> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,"User with ID " + id + " not found"));
 
         if(updatedUser.getName() != null){
             existingUser.setName(updatedUser.getName());
