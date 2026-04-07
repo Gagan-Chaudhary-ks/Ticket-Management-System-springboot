@@ -130,4 +130,10 @@ public class TicketService {
         }
     }
 
+    private void validatePriority(String priority) {
+        List<String> validPriorities = List.of("LOW", "MEDIUM", "HIGH");
+        if (!validPriorities.contains(priority.toUpperCase())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Priority Value");
+        }
+    }
 }
