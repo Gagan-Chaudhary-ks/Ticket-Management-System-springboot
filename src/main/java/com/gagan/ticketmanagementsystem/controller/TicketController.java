@@ -63,4 +63,9 @@ public class TicketController {
     public List<Ticket> getTicketByAssignedUser(@PathVariable Integer id){
         return ticketService.getTicketByAssignedUser(id);
     }
+
+    @GetMapping("/priority/{id}")
+    public List<Ticket> getTicketByPriority(@PathVariable String priority){
+        return ticketService.getTicketByPriority(priority);
+    }
 }
