@@ -82,6 +82,14 @@ public class TicketService {
     }
 
     public List<Ticket> getTicketByStatus(String status){
+        String upperStatus = status.toUpperCase();
+        List<String> validStatus = List.of("OPEN", "IN_PROGRESS", "RESOLVED");
+
+        if(!validStatus.contains(upperStatus)){
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "Invalid Status Value"
+            );
+        }
         return ticketRepository.findByStatusAndIsDeletedFalse(status);
     }
 
