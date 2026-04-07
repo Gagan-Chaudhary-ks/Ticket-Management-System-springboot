@@ -80,4 +80,8 @@ public class TicketService {
         ticket.setStatus("DELETED");
         ticketRepository.save(ticket);
     }
+
+    public List<Ticket> getTicketByStatus(String status){
+        return ticketRepository.findByStatusAndIsDeletedFalse(status);
+    }
 }
