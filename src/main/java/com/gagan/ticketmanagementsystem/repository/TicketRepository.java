@@ -8,4 +8,6 @@ import java.util.List;
 @Repository
 public interface TicketRepository extends JpaRepository <Ticket,Integer> {
     List<Ticket> findByIsDeletedFalse();
+
+    List<Ticket> findByStatusAndIsDeletedFalse(String status);
 }

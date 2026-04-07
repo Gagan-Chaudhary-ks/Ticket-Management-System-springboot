@@ -2,7 +2,6 @@ package com.gagan.ticketmanagementsystem.controller;
 
 import com.gagan.ticketmanagementsystem.entity.Ticket;
 import com.gagan.ticketmanagementsystem.dto.TicketRequestDTO;
-import com.gagan.ticketmanagementsystem.repository.TicketRepository;
 import com.gagan.ticketmanagementsystem.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
