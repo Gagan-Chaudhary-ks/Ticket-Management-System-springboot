@@ -112,6 +112,14 @@ public class TicketService {
     }
 
     public List<Ticket> getTicketByPriority(String priority){
+        String upperPriority = priority.toUpperCase();
+        List<String> validPriorities = List.of("LOW", "MEDIUM", "HIGH");
+
+        if(!validPriorities.contains(upperPriority)){
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "Invalid Priority Value"
+            );
+        }
         return ticketRepository.findByPriorityAndIsDeletedFalse(priority);
     }
 }
