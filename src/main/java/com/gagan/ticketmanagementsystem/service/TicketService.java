@@ -84,4 +84,8 @@ public class TicketService {
     public List<Ticket> getTicketByStatus(String status){
         return ticketRepository.findByStatusAndIsDeletedFalse(status);
     }
+
+    public List<Ticket> getTicketByCreatedUser(Integer id){
+        return ticketRepository.findByCreatedByIdAndIsDeletedFalse(id);
+    }
 }
