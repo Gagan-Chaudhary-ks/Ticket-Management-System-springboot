@@ -62,7 +62,12 @@ public class TicketService {
 
         if(ticketUpdateDTO.getTitle() != null) existingTicket.setTitle(ticketUpdateDTO.getTitle());
         if(ticketUpdateDTO.getDescription() != null) existingTicket.setDescription(ticketUpdateDTO.getDescription());
-        if(ticketUpdateDTO.getStatus() != null) existingTicket.setStatus(ticketUpdateDTO.getStatus());
+
+        if(ticketUpdateDTO.getStatus() != null) {
+            validateStatus(ticketUpdateDTO.getStatus());
+            existingTicket.setStatus(ticketUpdateDTO.getStatus().toUpperCase());
+        };
+
         if(ticketUpdateDTO.getPriority() != null) existingTicket.setPriority(ticketUpdateDTO.getPriority());
 
         if(ticketUpdateDTO.getAssignedToId() != null){
