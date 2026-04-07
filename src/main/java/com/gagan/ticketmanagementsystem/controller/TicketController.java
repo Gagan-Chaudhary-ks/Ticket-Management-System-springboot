@@ -19,13 +19,13 @@ public class TicketController {
     @Autowired
     private TicketService ticketService;
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<Ticket> createTicket(@RequestBody TicketRequestDTO ticketRequestDTO){
         Ticket createdTicket = ticketService.createTicket(ticketRequestDTO);
         return new ResponseEntity<Ticket>(createdTicket, HttpStatus.CREATED);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Ticket>> getAllTickets(){
         List<Ticket> tickets = ticketService.getAllTickets();
         return new ResponseEntity<>(tickets, HttpStatus.OK);
