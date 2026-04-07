@@ -90,7 +90,7 @@ public class TicketService {
                     HttpStatus.BAD_REQUEST, "Invalid Status Value"
             );
         }
-        return ticketRepository.findByStatusAndIsDeletedFalse(status);
+        return ticketRepository.findByStatusAndIsDeletedFalse(upperStatus);
     }
 
     public List<Ticket> getTicketByCreatedUser(Integer id){
