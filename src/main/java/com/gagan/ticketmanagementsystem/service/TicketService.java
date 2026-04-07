@@ -68,7 +68,10 @@ public class TicketService {
             existingTicket.setStatus(ticketUpdateDTO.getStatus().toUpperCase());
         };
 
-        if(ticketUpdateDTO.getPriority() != null) existingTicket.setPriority(ticketUpdateDTO.getPriority());
+        if(ticketUpdateDTO.getPriority() != null){
+            validatePriority(ticketUpdateDTO.getPriority());
+            existingTicket.setPriority(ticketUpdateDTO.getPriority().toUpperCase());
+        }
 
         if(ticketUpdateDTO.getAssignedToId() != null){
             User user = userRepository.findById(ticketUpdateDTO.getAssignedToId())
