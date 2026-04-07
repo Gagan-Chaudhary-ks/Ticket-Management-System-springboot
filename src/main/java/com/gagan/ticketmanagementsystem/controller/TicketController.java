@@ -50,22 +50,22 @@ public class TicketController {
     }
 
     @GetMapping("/status/{status}")
-    public List<Ticket> getTicketByStatus(@PathVariable String status){
-        return ticketService.getTicketByStatus(status);
+    public ResponseEntity<List<Ticket>> getTicketByStatus(@PathVariable String status){
+        return ResponseEntity.ok(ticketService.getTicketByStatus(status));
     }
 
     @GetMapping("/created-by/{id}")
-    public List<Ticket> getTicketByCreatedUser(@PathVariable Integer id){
-        return ticketService.getTicketByCreatedUser(id);
+    public ResponseEntity<List<Ticket>> getTicketByCreatedUser(@PathVariable Integer id){
+        return ResponseEntity.ok(ticketService.getTicketByCreatedUser(id));
     }
 
     @GetMapping("/assigned-to/{id}")
-    public List<Ticket> getTicketByAssignedUser(@PathVariable Integer id){
-        return ticketService.getTicketByAssignedUser(id);
+    public ResponseEntity<List<Ticket>> getTicketByAssignedUser(@PathVariable Integer id){
+        return ResponseEntity.ok(ticketService.getTicketByAssignedUser(id));
     }
 
     @GetMapping("/priority/{priority}")
-    public List<Ticket> getTicketByPriority(@PathVariable String priority){
-        return ticketService.getTicketByPriority(priority);
+    public ResponseEntity<List<Ticket>> getTicketByPriority(@PathVariable String priority){
+        return ResponseEntity.ok(ticketService.getTicketByPriority(priority));
     }
 }
