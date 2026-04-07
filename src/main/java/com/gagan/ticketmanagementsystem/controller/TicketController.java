@@ -58,4 +58,9 @@ public class TicketController {
     public List<Ticket> getTicketByCreatedUser(@PathVariable Integer id){
         return ticketService.getTicketByCreatedUser(id);
     }
+
+    @GetMapping("/assigned-to/{id}")
+    public List<Ticket> getTicketByAssignedUser(@PathVariable Integer id){
+        return ticketService.getTicketByAssignedUser(id);
+    }
 }
