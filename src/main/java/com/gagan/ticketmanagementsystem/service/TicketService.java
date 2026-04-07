@@ -88,4 +88,8 @@ public class TicketService {
     public List<Ticket> getTicketByCreatedUser(Integer id){
         return ticketRepository.findByCreatedByIdAndIsDeletedFalse(id);
     }
+
+    public List<Ticket> getTicketByAssignedUser(Integer id){
+        return ticketRepository.findByAssignedToIdAndIsDeletedFalse(id);
+    }
 }
