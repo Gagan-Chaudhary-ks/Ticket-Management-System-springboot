@@ -14,4 +14,6 @@ public interface TicketRepository extends JpaRepository <Ticket,Integer> {
     List<Ticket> findByCreatedByIdAndIsDeletedFalse(Integer id);
 
     List<Ticket> findByAssignedToIdAndIsDeletedFalse(Integer id);
+
+    List<Ticket> findByPriorityAndIsDeletedFalse(String priority);
 }
