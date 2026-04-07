@@ -120,6 +120,6 @@ public class TicketService {
                     HttpStatus.BAD_REQUEST, "Invalid Priority Value"
             );
         }
-        return ticketRepository.findByPriorityAndIsDeletedFalse(priority);
+        return ticketRepository.findByPriorityAndIsDeletedFalse(upperPriority);
     }
 }
