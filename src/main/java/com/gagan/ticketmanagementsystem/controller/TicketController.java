@@ -53,4 +53,9 @@ public class TicketController {
     public List<Ticket> getTicketByStatus(@PathVariable String status){
         return ticketService.getTicketByStatus(status);
     }
+
+    @GetMapping("/created-by/{id}")
+    public List<Ticket> getTicketByCreatedUser(@PathVariable Integer id){
+        return ticketService.getTicketByCreatedUser(id);
+    }
 }
