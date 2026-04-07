@@ -91,13 +91,7 @@ public class TicketService {
 
     public List<Ticket> getTicketByStatus(String status){
         String upperStatus = status.toUpperCase();
-        List<String> validStatus = List.of("OPEN", "IN_PROGRESS", "RESOLVED");
-
-        if(!validStatus.contains(upperStatus)){
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Invalid Status Value"
-            );
-        }
+        validateStatus(upperStatus);
         return ticketRepository.findByStatusAndIsDeletedFalse(upperStatus);
     }
 
@@ -121,13 +115,7 @@ public class TicketService {
 
     public List<Ticket> getTicketByPriority(String priority){
         String upperPriority = priority.toUpperCase();
-        List<String> validPriorities = List.of("LOW", "MEDIUM", "HIGH");
-
-        if(!validPriorities.contains(upperPriority)){
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Invalid Priority Value"
-            );
-        }
+        validatePriority(upperPriority);
         return ticketRepository.findByPriorityAndIsDeletedFalse(upperPriority);
     }
 
