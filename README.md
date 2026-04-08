@@ -32,10 +32,10 @@ Controller → Service → Repository → Database
 - Create and assign tickets to users
 - Fetch, update, and soft delete tickets
 - Filter tickets by:
-    - Status
-    - Priority
-    - Created user
-    - Assigned user
+  - Status
+  - Priority
+  - Created user
+  - Assigned user
 - Entity relationships using `@ManyToOne`
 - Automatic timestamps using `@PrePersist` & `@PreUpdate`
 
